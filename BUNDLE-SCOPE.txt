@@ -1,0 +1,45 @@
+MULTI-DEVICE CHANGE BUNDLES - 7 November 2026
+
+Implementation pending user verification. Prior 36 tests passed before these
+bundle changes. Five additional offline tests (37-41) have been added, not run.
+
+Single-device review remains available. Device bundle mode requires three agents
+and two to four distinct full proposed router configurations (.txt, max 100 KB
+each). Supported targets: DXB-R01, DXB-R02, LON-R01, LON-R02. An optional shared
+UTF-8 text change document (max 20 KB) is snapshotted as untrusted source data.
+PDF/Word parsing and proposal generation from prose are not implemented.
+
+Not restricted to BFD: the existing deterministic checks apply to BGP neighbor
+remote-as, VRRP priority, supported interface settings, BFD settings and prefix
+lists/references. Other commands remain unsupported and require a limited-review
+acknowledgment. Full IOS syntax, local-AS migrations, effective routing policy,
+running state, hardware compatibility and deployment safety are not validated.
+
+Each device has its own baseline/proposal snapshot and hashes. Inspection runs
+across all devices, with device labels on findings and diff sections. Evidence
+IDs use DEVICE/baseline:L# and DEVICE/proposal:L#. The agents see the combined
+proposed state; corpus intended configuration is context, not the proposed peer
+state when that peer has an uploaded proposal. Sequencing and partial change
+states are planning objectives; there is no network simulator or execution.
+
+One report contains all per-device findings, hashes, the shared change document
+and bundle hash. Exact report approval applies to the complete bundle and only
+saves the report; it grants no deployment permission. Old runs are unchanged.
+Budgets remain 18 decisions, 36 tools, 80000 reported tokens and 300 active seconds.
+Live answer quality and budget performance are not yet measured for bundles.
+
+UI: choose Change scope > Device bundle, upload configurations in the device
+uploader and the change document separately, enter a shared review goal. Device
+identity comes from each file's unique hostname. A paid-call-free diff preview
+is shown after creation. Single-device intake now refuses to silently ignore an
+uploaded configuration when a demo is selected.
+
+CLI also supports:
+uv run python run_review.py new --bundle inputs/bundle-demo/DXB-R01-proposed.txt inputs/bundle-demo/LON-R01-proposed.txt --change-document inputs/bundle-demo/change-document.txt --multi-agent
+Preview only unless --execute is supplied.
+
+Prepare demo files (user command, no APIs):
+uv run python prepare_bundle_demo.py --prepare
+
+Existing 15-case evaluation is unchanged. This coordinated BFD bundle is an
+additional scenario, not a replacement or an automatic passing result.

@@ -1,0 +1,11 @@
+[project]
+name = "atlas-change-review-agent"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain-openai>=1,<2",
+    "langgraph>=1,<2",
+    "langgraph-checkpoint-sqlite>=3,<4",
+    "streamlit>=1.57,<2",
+    "filelock>=3,<4",
+]
